@@ -1,15 +1,17 @@
-import { CartIcon, ShopIcon } from '../icons.jsx';
+import { CartIcon } from '../icons.jsx';
 import { useSelector } from 'react-redux';
 
 const Navbar = () => {
   // console.log(useSelector((store) => console.log(store)));
-  const { amount } = useSelector((store) => store.cart);
-  console.log(amount);
+  const { amount, cartItems } = useSelector((store) => {
+    // console.log(store);
+    return store.cart;
+  });
+  console.log(amount, cartItems);
 
   return (
     <nav className=''>
       <div className='nav-center'>
-        <ShopIcon />
         <h3>Max Gear Redux toolkit</h3>
         <div className='nav-container'>
           <CartIcon />
