@@ -3,7 +3,7 @@ import cartItems from '../../../cartItems.js';
 
 const initialState = {
   cartItems: cartItems,
-  amount: 1,
+  amount: 0,
   total: 0,
   isLoading: true,
 };
@@ -34,7 +34,8 @@ const cartSlice = createSlice({
       const itemId = payload;
       const cartItem = state.cartItems.find((item) => item.id === itemId);
       console.log(JSON.stringify(cartItem));
-      state.amount = cartItem.amount + 1;
+      state.amount = cartItem.amount += 1;
+      console.log(JSON.stringify(state));
     },
   },
 });
