@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CartItem from './CartItem.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCart } from '../store/features/cart/CartSlice.js';
+import { clearCart, getAmount } from '../store/features/cart/CartSlice.js';
 
 export const CartContainer = () => {
   const dispatch = useDispatch();
+  const [cartAmount, setCartAmount] = useState(0);
   const { cartItems, amount, total } = useSelector((store) => store.cart);
+
+  useEffect(() => {
+    try {
+      dispatch(getAmount());
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   return amount <= 0 ? (
     <>
       <section className='cart'>
