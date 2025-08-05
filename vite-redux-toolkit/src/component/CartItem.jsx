@@ -3,6 +3,7 @@ import { ChevronDown, ChevronUp } from '../icons.jsx';
 import {
   removeItem,
   increaseAmount,
+  decreaseAmount,
 } from '../store/features/cart/CartSlice.js';
 
 const CartItem = ({ id, img, title, price, amount }) => {
@@ -30,7 +31,10 @@ const CartItem = ({ id, img, title, price, amount }) => {
             <ChevronUp />
           </button>
           <p className='amount'>{amount}</p>
-          <button className='amount-btn'>
+          <button
+            className='amount-btn'
+            onClick={() => dispatch(decreaseAmount(id))}
+          >
             <ChevronDown />
           </button>
         </div>
