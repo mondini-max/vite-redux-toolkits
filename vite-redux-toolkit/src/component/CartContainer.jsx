@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import CartItem from './CartItem.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  calculTotals,
+  calcTotals,
   clearCart,
   getAmount,
 } from '../store/features/cart/CartSlice.js';
@@ -14,7 +14,7 @@ export const CartContainer = () => {
 
   useEffect(() => {
     dispatch(getAmount());
-    dispatch(calculTotals());
+    dispatch(calcTotals());
   }, [cartItems]);
 
   return amount <= 0 ? (
