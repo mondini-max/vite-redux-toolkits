@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import CartItem from './CartItem.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCart, getAmount } from '../store/features/cart/CartSlice.js';
+import {
+  calculTotals,
+  clearCart,
+  getAmount,
+} from '../store/features/cart/CartSlice.js';
 
 export const CartContainer = () => {
   const dispatch = useDispatch();
-  const [cartAmount, setCartAmount] = useState(0);
+
   const { cartItems, amount, total } = useSelector((store) => store.cart);
 
   useEffect(() => {
-    try {
-      dispatch(getAmount());
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+    dispatch(getAmount());
+    dispatch(calculTotals());
+  }, [cartItems]);
 
   return amount <= 0 ? (
     <>
@@ -40,7 +41,7 @@ export const CartContainer = () => {
           <hr />
           <div className='cart-total'>
             <h4>
-              total<span>${total}</span>
+              total<span>${total.toFixed(2)}</span>
             </h4>
           </div>
           <button
