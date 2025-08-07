@@ -6,6 +6,7 @@ import {
   clearCart,
   getAmount,
 } from '../store/features/cart/CartSlice.js';
+import { closeModal, openModal } from '../store/features/modal/ModalSlice.js';
 
 export const CartContainer = () => {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ export const CartContainer = () => {
           </div>
           <button
             className='btn clear-btn'
-            onClick={() => dispatch(clearCart())}
+            onClick={() => dispatch(openModal())}
           >
             clear cart
           </button>
